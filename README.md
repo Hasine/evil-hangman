@@ -1,4 +1,7 @@
 # evil-hangman
+
+Hasine Efetürk, 10173536 <hasineefeturk@hotmail.com>
+
 play a game against the evil hangman who changes his mind instantly
 
 list of features:
