@@ -10,3 +10,5 @@ list of features:
 -> easy to change settings
 -> more challenging than other existing versions
 -> clearly displays history after each game
+
+![alt tag](http://url/to/img.png)
