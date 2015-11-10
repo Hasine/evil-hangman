@@ -11,4 +11,5 @@ list of features:
 -> more challenging than other existing versions
 -> clearly displays history after each game
 
-![alt tag](http://url/to/img.png)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/sketchhangman.jpg)
+
