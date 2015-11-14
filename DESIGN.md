@@ -33,4 +33,12 @@ class EDITTEXT
 * addContent letters_guessed
 * getContent letters_guessed
 
-![alt tag](https://github.com/Hasine/evil-hangman/...)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/een.jpg)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/twee.jpg)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/drie.jpg)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/vier.jpg)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/vijfer.jpg)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/zes.jpg)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/zeven.jpg)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/acht.jpg)
+
