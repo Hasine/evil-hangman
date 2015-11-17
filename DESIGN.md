@@ -4,35 +4,44 @@ example of how to define a class:
 
 class name 
 * private attributes
-* * public methods
+*~ public methods
 
 class SETTINGS
-~ private settings
-~ private new_game
-~ private history
-* public settingsclicked
-* public new_gameclicked
-* public historyclicked
+* private settings
+* private new_game
+* private history
+*~ public settingsclicked
+*~ public new_gameclicked
+*~ public historyclicked
 
 class settings
-~ private int length_word
-~ private int incorrect_guesses
-~ private boolean EVIL
-* public getlength_word
-* public setlength_word
-* public getIntincorrect_guesses
-* public setincorrect_guesses
-* public getTypeEVIL
+* private length_word
+* private incorrect_guesses
+* private boolean EVIL
+*~ public int getlength_word
+*~ public int setlength_word
+*~ public int getincorrect_guesses
+*~ public int setincorrect_guesses
+*~ public getBooleanEVIL
 
-class EDITTEXT
-~ private string name
-~ private string letters_guessed
-~ private string word
-* getString name
-* setString name
-* setContent word
-* addContent letters_guessed
-* getContent letters_guessed
+class Guessed
+* private Array letters_guessed
+* private string word
+*~ public getword
+*~ public getArrayletters_guessed
+*~ public setArrayletters_guessed
+*~ public addArrayeletters_guessed
+
+class Name
+*private String name
+*~ public String getname
+*~ public String setname
+
+class GamePlay
+* private checkwin
+* private checklose
+*~ public getcheckwin
+*~ public getchecklose
 
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/een.jpg)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/twee.jpg)
