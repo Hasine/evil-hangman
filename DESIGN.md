@@ -1,9 +1,10 @@
 Hasine Efeturk, 10173536 <hasineefeturk@hotmail.com>
 
-example of how to define a class
+example of how to define a class:
+
 class name 
-  * private attributes
-* public methods
+* private attributes
+* * public methods
 
 class SETTINGS
 ~ private settings
