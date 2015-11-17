@@ -33,7 +33,7 @@ class Guessed
 * ~ public addArrayeletters_guessed
 
 class Name
-*private String name
+* private String name
 * ~ public String getname
 * ~ public String setname
 
