@@ -3,16 +3,16 @@ Hasine Efeturk, 10173536 <hasineefeturk@hotmail.com>
 example of how to define a class:
 
 class name 
-* private attributes <br /> 
-*~ public methods
+* private attributes 
+* ~ public methods
 
 class SETTINGS
 * private settings
 * private new_game
-* private history <br /> 
-*~ public settingsclicked <br /> 
-*~ public new_gameclicked <br /> 
-*~ public historyclicked
+* private history
+* ~ public settingsclicked 
+* ~ public new_gameclicked 
+* ~ public historyclicked
 
 class settings
 * private length_word
