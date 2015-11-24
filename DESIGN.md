@@ -44,19 +44,12 @@ class GamePlay
 * ~ public Boolean getchecklose()
 
  <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
- <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
- <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
- <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
- <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
- <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
- <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
- <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/een.jpg 400x600)
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/twee.jpg)
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/drie.jpg)
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/vier.jpg)
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/vijfer.jpg)
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/zes.jpg)
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/zeven.jpg)
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/acht.jpg)
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/twee.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/drie.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/vier.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/vijfer.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/zes.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/zeven.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/acht.jpg" height="600px" width="400px" />
+
 
