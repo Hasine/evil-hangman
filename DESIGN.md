@@ -44,6 +44,13 @@ class GamePlay
 * ~ public Boolean getchecklose()
 
  <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/een.jpg 400x600)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/twee.jpg)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/drie.jpg)
