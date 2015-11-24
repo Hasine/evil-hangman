@@ -4,46 +4,46 @@ example of how to define a class:
 
 class name 
 * private attributes 
-* ~ public methods
+* ~ public methods()
 
 class SETTINGS
-* private settings
-* private new_game
-* private history
-* ~ public settingsclicked 
-* ~ public new_gameclicked 
-* ~ public historyclicked
+* private Boolean settings
+* private Boolean new_game
+* private Boolean history
+* ~ public Boolean settingsclicked()
+* ~ public Boolean new_gameclicked()
+* ~ public Boolean historyclicked()
 
 class settings
-* private length_word
-* private incorrect_guesses
-* private boolean EVIL
-* ~ public int getlength_word
-* ~ public int setlength_word
-* ~ public int getincorrect_guesses
-* ~ public int setincorrect_guesses
-* ~ public getBooleanEVIL
+* private Int length_word
+* private Int incorrect_guesses
+* private Boolean EVIL
+* ~ public Int getlength_word()
+* ~ public Int setlength_word()
+* ~ public Int getincorrect_guesses()
+* ~ public Int setincorrect_guesses()
+* ~ public Boolean getBooleanEVIL()
 
 class Guessed
 * private Array letters_guessed
-* private string word
-* ~ public getword
-* ~ public getArrayletters_guessed
-* ~ public setArrayletters_guessed
-* ~ public addArrayeletters_guessed
+* private String word
+* ~ public String getword()
+* ~ public Array getArrayletters_guessed()
+* ~ public Array setArrayletters_guessed()
+* ~ public Array addArrayeletters_guessed()
 
 class Name
 * private String name
-* ~ public String getname
-* ~ public String setname
+* ~ public String getname()
+* ~ public String setname()
 
 class GamePlay
-* private checkwin
-* private checklose
-* ~ public getcheckwin
-* ~ public getchecklose
+* private Boolean checkwin
+* private Boolean checklose
+* ~ public Boolean getcheckwin()
+* ~ public Boolean getchecklose()
 
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/een.jpg)
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/een.jpg = 200x200)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/twee.jpg)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/drie.jpg)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/vier.jpg)
