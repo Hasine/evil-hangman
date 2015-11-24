@@ -43,7 +43,8 @@ class GamePlay
 * ~ public Boolean getcheckwin()
 * ~ public Boolean getchecklose()
 
-![alt tag](https://github.com/Hasine/evil-hangman/blob/master/een.jpg =50x100)
+ <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="200px" width="100px" />
+![alt tag](https://github.com/Hasine/evil-hangman/blob/master/een.jpg)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/twee.jpg)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/drie.jpg)
 ![alt tag](https://github.com/Hasine/evil-hangman/blob/master/vier.jpg)
