@@ -43,6 +43,8 @@ class GamePlay
 * ~ public Boolean getcheckwin()
 * ~ public Boolean getchecklose()
 
+
+
  <img src="https://github.com/Hasine/evil-hangman/blob/master/een.jpg" height="600px" width="400px" />
  <img src="https://github.com/Hasine/evil-hangman/blob/master/twee.jpg" height="600px" width="400px" />
  <img src="https://github.com/Hasine/evil-hangman/blob/master/drie.jpg" height="600px" width="400px" />
