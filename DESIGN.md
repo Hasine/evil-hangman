@@ -6,7 +6,7 @@ class name
 * private attributes 
 * ~ public methods()
 
-class SETTINGS
+class SETTINGS (Menu)
 * private Boolean settings
 * private Boolean new_game
 * private Boolean history
@@ -24,6 +24,13 @@ class settings
 * ~ public Int setincorrect_guesses()
 * ~ public Boolean getBooleanEVIL()
 
+class history
+* private String name
+* private String word
+* private Int guesses_left
+// gets info from database
+* ~ public void getDatabase()
+
 class Guessed
 * private Array letters_guessed
 * private String word
@@ -36,11 +43,13 @@ class Name
 * private String name
 * ~ public String getname()
 * ~ public String setname()
+* ~ public void updateDatabase()
 
 class GamePlay
 * private Boolean checkwin
 * private Boolean checklose
 * ~ public Boolean getcheckwin()
+* ~ public void updateDatabaseWin()
 * ~ public Boolean getchecklose()
 
 
