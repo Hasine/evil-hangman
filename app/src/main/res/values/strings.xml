@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Evil-Hangman</string>
     <string name="HEAD">HANGMAN</string>
+
     <string name="action_settings">Settings</string>
     <string name="settings">Settings</string>
     <string name="newgame">New Game</string>
     <string name="history">History</string>
+    <string name="quit">Quit game</string>
+
+    <string name="Settings">SETTINGS</string>
+    <string name="History">HIGHSCORES</string>
+    <string name="WinScreen">YEAY YOU WON!</string>
 
     <string name="gallows">The Gallows</string>
     <string name="head">The Head</string>
@@ -14,14 +20,14 @@
     <string name="guessleft">Guesses left: </string>
     <string name="guessletters">Guessed letters:</string>
     <string name="hangmansymbol">symbol</string>
-    <string name="title_activity_settings">settings</string>
-    <string name="Settings">SETTINGS</string>
-    <string name="title_activity_history_view">HistoryViewActivity</string>
-    <string name="lenword">LENGTH WORD:</string>
-    <string name="incorrectguesses">INCORRECT GUESSES:</string>
-    <string name="eviltoggle">EVIL?</string>
-    <string name="History">HIGHSCORES</string>
+
+
+    <string name="lenword">CHOOSE LENGTH WORD:</string>
+    <string name="incorrectguesses">CHOOSE AMOUNT INCORRECT GUESSES:</string>
+    <string name="eviltoggle">GOOD or EVIL?</string>
     <string name="evil">EVIL</string>
     <string name="good">GOOD</string>
+    <string name="winnername">Please enter your name</string>
+
 
 </resources>

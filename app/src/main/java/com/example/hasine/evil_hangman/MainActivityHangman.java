@@ -3,14 +3,18 @@ package com.example.hasine.evil_hangman;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +29,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -34,22 +39,17 @@ import java.util.Random;
 public class MainActivityHangman extends AppCompatActivity {
 
     private ImageView[] bodyParts;
-    private int guessLeft;
+    private TextView[] charViews;
     private TextView guessletter, guessleft;
     private GridView letters;
+    private ArrayList<Integer> index = new ArrayList<>();
+    private Bundle myInstanceState;
     private StringBuilder guessed_letters;
-    private TextView[] charViews;
-    private String currWord;
-    private LinearLayout wordLayout;
-    private LetterAdapter ltrAdapt;
-    private int numChars;
     private String[] words;
-    private Random rand;
-    private int currPart;
-    private int numParts=6;
-    private int numCorr;
+    private String currWord;
+    private boolean gameType;
+    private int currPart, numParts=6, numCorr, lenword, incorrectguesses;
 
-    Gameplay gameplay;
     EvilGameplay evilGameplay;
     GoodGameplay goodGameplay;
 
@@ -59,17 +59,17 @@ public class MainActivityHangman extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_hangman);
 
+        myInstanceState = savedInstanceState;
+
         ActionBar actionBar = getActionBar();
 
-        Resources res = getResources();
-        words = res.getStringArray(R.array.words);
-
-        rand = new Random();
-        currWord = "";
+//      To save/read preferences data
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        lenword = SP.getInt("seekBar1Value", 6);
+        incorrectguesses = SP.getInt("seekBar2Value", 7);
+        gameType = SP.getBoolean("gameType", true);
 
         guessed_letters = new StringBuilder(50);
-        guessLeft = 7;
-
 
         bodyParts = new ImageView[numParts];
         bodyParts[0] = (ImageView)findViewById(R.id.head);
@@ -79,46 +79,31 @@ public class MainActivityHangman extends AppCompatActivity {
         bodyParts[4] = (ImageView)findViewById(R.id.leg1);
         bodyParts[5] = (ImageView)findViewById(R.id.leg2);
 
-
-        // instantiate all views.
-        guessletter = (TextView) findViewById(R.id.guessletter);
-        guessleft = (TextView) findViewById(R.id.guessleft);
-        wordLayout = (LinearLayout)findViewById(R.id.word);
-        letters = (GridView)findViewById(R.id.letters);
-
-
-        guessleft.setText(getString(R.string.guessleft) + " " + guessLeft);
-
         for(int p = 0; p < numParts; p++) {
             bodyParts[p].setVisibility(View.INVISIBLE);
         }
 
-        gameplay();
+        // instantiate all views.
+        guessletter = (TextView) findViewById(R.id.guessletter);
+        guessleft = (TextView) findViewById(R.id.guessleft);
+        guessleft.setText(getString(R.string.guessleft) + " " + incorrectguesses);
+        LinearLayout wordLayout = (LinearLayout)findViewById(R.id.word);
+        letters = (GridView)findViewById(R.id.letters);
 
-//        goodGameplay = new GoodGameplay();
 
-    }
-
-
-    public void gameplay(){
-
-        String newWord = words[rand.nextInt(words.length)];
-
-        while(newWord.equals(currWord))
-            newWord = words[rand.nextInt(words.length)];
-
-        currWord = newWord;
-
-        charViews = new TextView[currWord.length()];
-
-        currPart=0;
-        numChars=currWord.length();
-        numCorr=0;
-
+        if (gameType){
+            evilGameplay = new EvilGameplay(this);
+            currWord = evilGameplay.chooseword(lenword);
+        }else{
+            goodGameplay = new GoodGameplay(this);
+            currWord = goodGameplay.chooseword(lenword);
+        }
+        Log.d("gameType: ", "" + gameType);
         wordLayout.removeAllViews();
 
+        charViews = new TextView[lenword];
 
-        for (int c = 0; c < currWord.length(); c++) {
+        for (int c = 0; c < lenword; c++) {
             charViews[c] = new TextView(this);
             charViews[c].setText("" + currWord.charAt(c));
 
@@ -130,38 +115,47 @@ public class MainActivityHangman extends AppCompatActivity {
             wordLayout.addView(charViews[c]);
         }
 
-        ltrAdapt=new LetterAdapter(this);
+        LetterAdapter ltrAdapt=new LetterAdapter(this);
         letters.setAdapter(ltrAdapt);
+
+        currPart=0;
+        numCorr=0;
+
     }
+
+
 
     public void letterPressed(View view) {
         //user has pressed a letter to guess
-        String ltr=((TextView)view).getText().toString();
+        String ltr = ((TextView) view).getText().toString();
         char letterChar = ltr.charAt(0);
         view.setEnabled(false);
         view.setBackgroundResource(R.drawable.letter_down);
 
-        boolean correct = false;
-        for(int k = 0; k < currWord.length(); k++) {
-            if(currWord.charAt(k)==letterChar){
-                correct = true;
-                numCorr++;
-                charViews[k].setTextColor(Color.BLACK);
-            }
+        Log.d("currWord: ", "" + currWord);
+        if (gameType){
+            index = evilGameplay.LetterChosen(letterChar);
+        }else{
+            index = goodGameplay.LetterChosen(letterChar);
         }
+
 
         guessed_letters.append(letterChar + ", ");
         guessletter.setText(getString(R.string.guessletters) + " " + guessed_letters);
 
-
-        if (correct){
-            // do something
-        }else if (currPart < numParts) {
+        if (index.size() != 0) {
+            for (int i = 0; i < index.size(); i++) {
+                numCorr++;
+                charViews[index.get(i)].setTextColor(Color.BLACK);
+            }
+            index.clear();
+        //        if guessed letter is not present in word
+        }else if ((currPart < numParts) && (index.size() == 0)) {
             //some guesses left
             bodyParts[currPart].setVisibility(View.VISIBLE);
             currPart++;
-            guessLeft--;
-            guessleft.setText(getString(R.string.guessleft) + " " + guessLeft);
+            incorrectguesses--;
+            guessleft.setText(getString(R.string.guessleft) + " " + incorrectguesses);
         }else{
             //user has lost
             disableBtns();
@@ -173,12 +167,8 @@ public class MainActivityHangman extends AppCompatActivity {
             loseBuild.setPositiveButton("Play Again",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            guessLeft = 7;
-                            guessleft.setText(getString(R.string.guessleft) + " " + guessLeft);
-                            int len = guessed_letters.length();
-                            guessed_letters.delete(0, len);
-                            guessletter.setText(getString(R.string.guessletters));
-                            MainActivityHangman.this.gameplay();
+                            recreate();
+
                         }});
 
             loseBuild.setNegativeButton("Exit",
@@ -186,38 +176,14 @@ public class MainActivityHangman extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int id) {
                             MainActivityHangman.this.finish();
                         }});
-
             loseBuild.show();
         }
 
-        if (numCorr == numChars) {
+        if (numCorr == lenword) {
             // Disable Buttons
             disableBtns();
-
-            // Display Alert Dialog
-            AlertDialog.Builder winBuild = new AlertDialog.Builder(this);
-            winBuild.setTitle("YAY");
-            winBuild.setMessage("You win!\n\nThe answer was:\n\n" + currWord);
-            winBuild.setPositiveButton("Play Again",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            guessLeft = 7;
-                            guessleft.setText(getString(R.string.guessleft) + " " + guessLeft);
-                            int len = guessed_letters.length();
-                            guessed_letters.delete(0, len);
-                            guessletter.setText(getString(R.string.guessletters));
-                            MainActivityHangman.this.gameplay();
-                        }
-                    });
-
-            winBuild.setNegativeButton("Exit",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            MainActivityHangman.this.finish();
-                        }
-                    });
-
-            winBuild.show();
+            Intent gotoWinScreen = new Intent(this, winSCREEN.class);
+            startActivity(gotoWinScreen);
         }
     }
 
@@ -226,6 +192,17 @@ public class MainActivityHangman extends AppCompatActivity {
         for (int l = 0; l < numLetters; l++) {
             letters.getChildAt(l).setEnabled(false);
         }
+    }
+
+
+    private void saveSettings(){
+        SharedPreferences.Editor SPEditor = getPreferences(Context.MODE_PRIVATE).edit();
+
+        SPEditor.putInt("length word", lenword);
+        SPEditor.putInt("incorrect guesses", incorrectguesses);
+        SPEditor.putBoolean("gametype", gameType);
+        SPEditor.commit();
+
     }
 
     @Override
@@ -243,19 +220,23 @@ public class MainActivityHangman extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.action_extra_settings:
-                Intent gotoSetting = new Intent(this, settings.class);
-                this.startActivity(gotoSetting);
-            case R.id.action_newgame:
-                guessLeft = 7;
-                int len = guessed_letters.length();
-                guessleft.setText(getString(R.string.guessleft) + " " + guessLeft);
-                guessed_letters.delete(0, len);
-                guessletter.setText(getString(R.string.guessletters));
-                MainActivityHangman.this.gameplay();
             case R.id.action_history:
                 Intent gotoHistory = new Intent(this, HistoryViewActivity.class);
-                this.startActivity(gotoHistory);
+                startActivity(gotoHistory);
+                return true;
+            case R.id.action_extra_settings:
+                Intent gotoSetting = new Intent(this, settings.class);
+                startActivity(gotoSetting);
+                return true;
+            case R.id.action_newgame:
+                Intent gotoMain = new Intent(this, MainActivityHangman.class);
+                startActivity(gotoMain);
+                return true;
+            case R.id.action_quitgame:
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+
             default: return super.onOptionsItemSelected(item);
         }
 

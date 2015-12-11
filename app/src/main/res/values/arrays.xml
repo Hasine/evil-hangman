@@ -11,5 +11,33 @@
         <item>ANDROID</item>
         <item>KEYBOARD</item>
         <item>SMARTPHONE</item>
+        <item>HALLO</item>
+        <item>SPORT</item>
+        <item>NETLIST</item>
+        <item>WALKING</item>
+        <item>SUPER</item>
+        <item>DANCING</item>
+        <item>BOTTLE</item>
+        <item>STYLO</item>
+        <item>READING</item>
+        <item>SHIFT</item>
+        <item>HOUSE</item>
+        <item>LAPTOP</item>
+        <item>INSANELONGWORDTOTESTAPPLICATION</item>
+        <item>HAI</item>
+        <item>BABY</item>
+        <item>HAIHAIHAI</item>
+    </string-array>
+
+    <string-array name="listArray">
+        <item>Headings</item>
+        <item>Headings and Details</item>
+        <item>All Data</item>
+    </string-array>
+
+    <string-array name="listValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
 </resources>

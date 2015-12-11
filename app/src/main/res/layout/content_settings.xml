@@ -39,49 +39,57 @@
             android:src="@drawable/android_hangman_bg" />
     </LinearLayout>
 
+
     <TextView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
+        android:layout_width="match_parent"
+        android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:textColor="#FFF"
+        android:textStyle="bold"
         android:text="@string/lenword"/>
     <SeekBar
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="10"
-        android:id="@+id/seekBar1" />
+        android:layout_width="match_parent"
+        android:defaultValue="7"
+        android:id="@+id/seekBar1"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#FFF"
+        android:defaultValue="7"
         android:id="@+id/textsb1"/>
 
+
     <TextView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
+        android:layout_width="match_parent"
+        android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:textColor="#FFF"
+        android:textStyle="bold"
         android:text="@string/incorrectguesses"/>
     <SeekBar
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="26"
-        android:id="@+id/seekBar2" />
+        android:layout_width="match_parent"
+        android:defaultValue="7"
+        android:id="@+id/seekBar2"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#FFF"
+        android:defaultValue="7"
         android:id="@+id/textsb2"/>
 
+
     <Switch
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:paddingTop="30dp"
         android:paddingBottom="15dp"
         android:text="@string/eviltoggle"
         android:textColor="#FFF"
+        android:textStyle="bold"
         android:textOn="@string/evil"
         android:textOff="@string/good"
         android:checked="true"

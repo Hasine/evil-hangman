@@ -17,16 +17,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".settings"
             android:label="@string/HEAD"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
-
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".HistoryViewActivity"
             android:label="@string/HEAD"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".winSCREEN"
+            android:label="@string/HEAD"
+            android:theme="@style/NoActionBar"/>
     </application>
 
 </manifest>

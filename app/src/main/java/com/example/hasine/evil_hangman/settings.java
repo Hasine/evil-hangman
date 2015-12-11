@@ -2,7 +2,9 @@ package com.example.hasine.evil_hangman;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -26,34 +28,39 @@ public class settings extends MainActivityHangman {
 
         ActionBar actionBar = getActionBar();
 
-        final Intent changedsettings = new Intent(this, MainActivityHangman.class);
+        final SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        int lenword = SP.getInt("seekBar1Value", 6);
+        int incorrectguesses = SP.getInt("seekBar2Value", 7);
+        Boolean gameType = SP.getBoolean("gameType", true);
 
-
-        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar1);
-        seekBar.setProgress(7);
-        seekBar.incrementProgressBy(1);
-        seekBar.setMax(15);
+        SeekBar seekBar1 = (SeekBar) findViewById(R.id.seekBar1);
+        seekBar1.setProgress(lenword);
+        seekBar1.incrementProgressBy(1);
+        seekBar1.setMax(15);
         final TextView seekBar1Value = (TextView) findViewById(R.id.textsb1);
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onProgressChanged(SeekBar seekBar1, int progress, boolean fromUser) {
                 seekBar1Value.setText(String.valueOf(progress));
-                changedsettings.putExtra("lengthword", progress);
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void onStartTrackingTouch(SeekBar seekBar1) {
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onStopTrackingTouch(SeekBar seekBar1) {
+                int sb1value = seekBar1.getProgress();
+                SharedPreferences.Editor SPEditor = SP.edit();
+                SPEditor.putInt("seekBar1Value", sb1value);
+                SPEditor.commit();
             }
         });
 
         SeekBar seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
-        seekBar2.setProgress(7);
+        seekBar2.setProgress(incorrectguesses);
         seekBar2.incrementProgressBy(1);
         seekBar2.setMax(26);
         final TextView seekBar2Value = (TextView) findViewById(R.id.textsb2);
@@ -63,7 +70,6 @@ public class settings extends MainActivityHangman {
             @Override
             public void onProgressChanged(SeekBar seekBar2, int progress, boolean fromUser) {
                 seekBar2Value.setText(String.valueOf(progress));
-                changedsettings.putExtra("incorrectguesses", progress);
             }
 
             @Override
@@ -72,19 +78,32 @@ public class settings extends MainActivityHangman {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar2) {
+                int sb2value = seekBar2.getProgress();
+                SharedPreferences.Editor SPEditor = SP.edit();
+                SPEditor.putInt("seekBar2Value", sb2value);
+                SPEditor.commit();
             }
         });
 
         Switch toggle = (Switch) findViewById(R.id.switch1);
+        toggle.setChecked(gameType);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    // The toggle is enabled
+                    // The toggle is enabled, Use evil gameplay
+                    SharedPreferences.Editor SPEditor = SP.edit();
+                    SPEditor.putBoolean("gameType", true);
+                    SPEditor.commit();
                 } else {
-                    // The toggle is disabled
+                    // The toggle is disabled, use good gameplay
+                    SharedPreferences.Editor SPEditor = SP.edit();
+                    SPEditor.putBoolean("gameType", false);
+                    SPEditor.commit();
                 }
             }
         });
+
+
 
     }
 
@@ -107,13 +126,21 @@ public class settings extends MainActivityHangman {
         switch (id) {
             case R.id.action_extra_settings:
                 Intent gotoSetting = new Intent(this, settings.class);
-                this.startActivity(gotoSetting);
+                startActivity(gotoSetting);
+                return true;
             case R.id.action_newgame:
                 Intent gotoMain = new Intent(this, MainActivityHangman.class);
-                this.startActivity(gotoMain);
+                startActivity(gotoMain);
+                return true;
             case R.id.action_history:
                 Intent gotoHistory = new Intent(this, HistoryViewActivity.class);
-                this.startActivity(gotoHistory);
+                startActivity(gotoHistory);
+                return true;
+            case R.id.action_quitgame:
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+
             default:   return super.onOptionsItemSelected(item);
         }
 

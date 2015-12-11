@@ -30,6 +30,13 @@
                 android:showAsAction="never"
                 android:title="@string/history"
                 tools:ignore="AppCompatResource" />
+
+            <item
+                android:id="@+id/action_quitgame"
+                android:icon="@drawable/ic_menu_close_clear_cancel"
+                android:showAsAction="never"
+                android:title="@string/quit"
+                tools:ignore="AppCompatResource" />
         </menu>
     </item>
 </menu>
