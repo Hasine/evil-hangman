@@ -28,6 +28,7 @@
     <string name="evil">EVIL</string>
     <string name="good">GOOD</string>
     <string name="winnername">Please enter your name</string>
+    <string name="playagainbutton">Play again!</string>
 
 
 </resources>

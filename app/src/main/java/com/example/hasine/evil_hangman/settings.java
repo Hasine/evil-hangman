@@ -26,12 +26,12 @@ public class settings extends MainActivityHangman {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        ActionBar actionBar = getActionBar();
 
         final SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         int lenword = SP.getInt("seekBar1Value", 6);
         int incorrectguesses = SP.getInt("seekBar2Value", 7);
         Boolean gameType = SP.getBoolean("gameType", true);
+
 
         SeekBar seekBar1 = (SeekBar) findViewById(R.id.seekBar1);
         seekBar1.setProgress(lenword);
@@ -59,6 +59,7 @@ public class settings extends MainActivityHangman {
             }
         });
 
+
         SeekBar seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
         seekBar2.setProgress(incorrectguesses);
         seekBar2.incrementProgressBy(1);
@@ -85,6 +86,7 @@ public class settings extends MainActivityHangman {
             }
         });
 
+
         Switch toggle = (Switch) findViewById(R.id.switch1);
         toggle.setChecked(gameType);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -102,9 +104,6 @@ public class settings extends MainActivityHangman {
                 }
             }
         });
-
-
-
     }
 
 

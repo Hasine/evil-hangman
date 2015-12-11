@@ -28,7 +28,6 @@
             android:textColor="#FFF"
             android:paddingBottom="15dp"
             android:paddingTop="15dp"
-            android:id="@+id/highscores"
             android:layout_weight="1"/>
 
         <ImageView
@@ -48,5 +47,22 @@
         android:id="@+id/winner"
         android:textSize="30sp"
         android:textColor="#FFF"/>
+
+    <GridView
+        android:id="@+id/highscores"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numColumns="4" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="220dp"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/playagainbutton"
+        android:id="@+id/playAgain"
+        android:onClick="playAgain" />
 
 </LinearLayout>

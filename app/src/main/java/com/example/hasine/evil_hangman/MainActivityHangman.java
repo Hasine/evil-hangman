@@ -1,36 +1,26 @@
 package com.example.hasine.evil_hangman;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.Random;
+
 
 /**
  * Inspired by: http://code.tutsplus.com/series/create-a-hangman-game-for-android--cms-702
@@ -42,10 +32,7 @@ public class MainActivityHangman extends AppCompatActivity {
     private TextView[] charViews;
     private TextView guessletter, guessleft;
     private GridView letters;
-    private ArrayList<Integer> index = new ArrayList<>();
-    private Bundle myInstanceState;
     private StringBuilder guessed_letters;
-    private String[] words;
     private String currWord;
     private boolean gameType;
     private int currPart, numParts=6, numCorr, lenword, incorrectguesses;
@@ -59,17 +46,15 @@ public class MainActivityHangman extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_hangman);
 
-        myInstanceState = savedInstanceState;
+        Bundle myInstanceState = savedInstanceState;
 
-        ActionBar actionBar = getActionBar();
-
-//      To save/read preferences data
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         lenword = SP.getInt("seekBar1Value", 6);
         incorrectguesses = SP.getInt("seekBar2Value", 7);
         gameType = SP.getBoolean("gameType", true);
 
         guessed_letters = new StringBuilder(50);
+
 
         bodyParts = new ImageView[numParts];
         bodyParts[0] = (ImageView)findViewById(R.id.head);
@@ -83,7 +68,7 @@ public class MainActivityHangman extends AppCompatActivity {
             bodyParts[p].setVisibility(View.INVISIBLE);
         }
 
-        // instantiate all views.
+
         guessletter = (TextView) findViewById(R.id.guessletter);
         guessleft = (TextView) findViewById(R.id.guessleft);
         guessleft.setText(getString(R.string.guessleft) + " " + incorrectguesses);
@@ -98,16 +83,17 @@ public class MainActivityHangman extends AppCompatActivity {
             goodGameplay = new GoodGameplay(this);
             currWord = goodGameplay.chooseword(lenword);
         }
-        Log.d("gameType: ", "" + gameType);
+
         wordLayout.removeAllViews();
+
 
         charViews = new TextView[lenword];
 
         for (int c = 0; c < lenword; c++) {
             charViews[c] = new TextView(this);
             charViews[c].setText("" + currWord.charAt(c));
-
-            charViews[c].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            charViews[c].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
             charViews[c].setGravity(Gravity.CENTER);
             charViews[c].setTextColor(Color.WHITE);
             charViews[c].setBackgroundResource(R.drawable.letter_bg);
@@ -120,19 +106,21 @@ public class MainActivityHangman extends AppCompatActivity {
 
         currPart=0;
         numCorr=0;
-
     }
 
 
-
+    /**
+     *
+     *
+     */
     public void letterPressed(View view) {
-        //user has pressed a letter to guess
+
         String ltr = ((TextView) view).getText().toString();
         char letterChar = ltr.charAt(0);
         view.setEnabled(false);
         view.setBackgroundResource(R.drawable.letter_down);
 
-        Log.d("currWord: ", "" + currWord);
+        ArrayList<Integer> index;
         if (gameType){
             index = evilGameplay.LetterChosen(letterChar);
         }else{
@@ -143,24 +131,24 @@ public class MainActivityHangman extends AppCompatActivity {
         guessed_letters.append(letterChar + ", ");
         guessletter.setText(getString(R.string.guessletters) + " " + guessed_letters);
 
+        // if user guess the right letter
         if (index.size() != 0) {
             for (int i = 0; i < index.size(); i++) {
                 numCorr++;
                 charViews[index.get(i)].setTextColor(Color.BLACK);
             }
             index.clear();
-        //        if guessed letter is not present in word
+        // if guessed letter is not present in word
         }else if ((currPart < numParts) && (index.size() == 0)) {
-            //some guesses left
+            // some guesses left
             bodyParts[currPart].setVisibility(View.VISIBLE);
             currPart++;
             incorrectguesses--;
             guessleft.setText(getString(R.string.guessleft) + " " + incorrectguesses);
         }else{
-            //user has lost
+            // user has lost
             disableBtns();
 
-            // Display Alert Dialog
             AlertDialog.Builder loseBuild = new AlertDialog.Builder(this);
             loseBuild.setTitle("OOPS");
             loseBuild.setMessage("You lose!\n\nThe answer was:\n\n"+currWord);
@@ -168,7 +156,6 @@ public class MainActivityHangman extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             recreate();
-
                         }});
 
             loseBuild.setNegativeButton("Exit",
@@ -187,6 +174,9 @@ public class MainActivityHangman extends AppCompatActivity {
         }
     }
 
+    /**
+     * Whenever gameplay ends, invoke this method disablebuttons.
+     */
     public void disableBtns() {
         int numLetters = letters.getChildCount();
         for (int l = 0; l < numLetters; l++) {
@@ -194,10 +184,12 @@ public class MainActivityHangman extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * To store changed settings when exiting app.
+     */
     private void saveSettings(){
-        SharedPreferences.Editor SPEditor = getPreferences(Context.MODE_PRIVATE).edit();
 
+        SharedPreferences.Editor SPEditor = getPreferences(Context.MODE_PRIVATE).edit();
         SPEditor.putInt("length word", lenword);
         SPEditor.putInt("incorrect guesses", incorrectguesses);
         SPEditor.putBoolean("gametype", gameType);
@@ -214,9 +206,6 @@ public class MainActivityHangman extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         switch (id) {
@@ -239,7 +228,6 @@ public class MainActivityHangman extends AppCompatActivity {
 
             default: return super.onOptionsItemSelected(item);
         }
-
     }
 
 }

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:background="#FF000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.hasine.evil_hangman.settings"
+        tools:showIn="@layout/activity_settings">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/Settings"
+                android:textColor="#FFF"
+                android:textSize="40sp"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:id="@+id/settings"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:contentDescription="@string/hangmansymbol"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:src="@drawable/android_hangman_bg" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:text="@string/lenword"/>
+        <SeekBar
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:defaultValue="7"
+            android:id="@+id/seekBar1"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:defaultValue="7"
+            android:id="@+id/textsb1"/>
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:text="@string/incorrectguesses"/>
+        <SeekBar
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:defaultValue="7"
+            android:id="@+id/seekBar2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:defaultValue="7"
+            android:id="@+id/textsb2"/>
+
+
+        <Switch
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingBottom="15dp"
+            android:text="@string/eviltoggle"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:textOn="@string/evil"
+            android:textOff="@string/good"
+            android:checked="true"
+            android:id="@+id/switch1" />
+
+    </LinearLayout>
+</ScrollView>

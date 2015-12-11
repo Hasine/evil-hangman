@@ -1,37 +1,44 @@
 package com.example.hasine.evil_hangman;
 
-import android.app.ActionBar;
+
+import android.database.sqlite.SQLiteDatabase;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class HistoryViewActivity extends MainActivityHangman {
 
-    private TextView winner;
+    private SQLiteDatabase Highscores;
+    private TextView name, gametype, guessword, guessletter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_view);
 
-        ActionBar actionBar = getActionBar();
+        Highscores = openOrCreateDatabase("highscores",MODE_PRIVATE,null);
 
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String winnername = SP.getString("winnername", "");
         Log.d("winnername: ", "" + winnername);
-        winner = (TextView) findViewById(R.id.winner);
+        TextView winner = (TextView) findViewById(R.id.winner);
         winner.setText(winnername);
+
     }
 
+//    when user enjoys your game and wants to play again
+    public void playAgain(View view) {
+        Intent gotoMain = new Intent(this, MainActivityHangman.class);
+        startActivity(gotoMain);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,5 +75,4 @@ public class HistoryViewActivity extends MainActivityHangman {
         }
 
     }
-
 }
